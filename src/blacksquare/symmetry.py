@@ -26,6 +26,7 @@ class Symmetry(enum.Enum):
     BIAXIAL = "biaxial"
     NE_DIAGONAL = "ne_diagonal"
     NW_DIAGONAL = "nw_diagonal"
+    ASYMMETRICAL = "asymmetrical"
 
     @property
     def is_multi_image(self) -> bool:
@@ -77,6 +78,8 @@ class Symmetry(enum.Enum):
             images = SymmetryResult(np.transpose(np.rot90(grid, k=2)), True)
         elif self == Symmetry.NW_DIAGONAL:
             images = SymmetryResult(np.transpose(grid), True)
+        elif self == Symmetry.ASYMMETRICAL:
+            images = SymmetryResult(grid, False)
 
         if not isinstance(images, list) and force_list:
             return [images]
