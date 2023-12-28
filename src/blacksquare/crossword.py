@@ -205,7 +205,7 @@ class Crossword:
                 down_dict[word.number] = word_dict
                 
         
-        return ({across_dict,down_dict})
+        return ({"across":across_dict,"down":down_dict})
             
 
     def to_puz(self, filename: str) -> None:
