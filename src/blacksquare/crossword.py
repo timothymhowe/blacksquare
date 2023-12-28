@@ -156,6 +156,58 @@ class Crossword:
             xw[DOWN, cn["num"]].clue = cn["clue"]
         return xw
 
+    # TODO:
+    def to_dict(self) -> dict:
+        """Returns a dict that represents the crossword object
+        of the form:
+        { across:
+            {1: {
+                clue:
+                answer:
+                row:
+                column:
+                },
+            2: {
+                ...
+            }
+            },
+         down:
+            {1: {
+                clue:
+                answer:
+                row:
+                column:
+            },
+            3: {
+                ...
+            }
+            }
+         }
+        
+        """
+        # instantiate empty direction dicts to hold the word dicts
+        across_dict = {}
+        down_dict = {}
+
+        for word in self.iterwords():
+
+            # instantiate a new blank word dict for the word 
+            word_dict = {}
+
+            word_dict["clue"] = word.clue
+            word_dict["answer"] = word.value
+            word_dict["row"], word_dict["col"] = self.get_indices(word.index)
+
+            # store the constructed clue dict in the correct dictionary (across or down)
+            if word.direction.value == "Across":
+                across_dict[word.number] = word_dict
+            else:
+                down_dict[word.number] = word_dict
+                
+        
+        return ({across_dict,down_dict})
+            
+
     def to_puz(self, filename: str) -> None:
         """Outputs a .puz file from the Crossword object.
 
