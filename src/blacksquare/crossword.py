@@ -200,12 +200,12 @@ class Crossword:
 
             # store the constructed clue dict in the correct dictionary (across or down)
             if word.direction.value == "Across":
-                across_dict[word.number] = word_dict
+                across_dict[str(word.number)] = word_dict
             else:
-                down_dict[word.number] = word_dict
+                down_dict[str(word.number)] = word_dict
                 
         
-        return ({"across":across_dict,"down":down_dict})
+        return ({"across":across_dict, "down":down_dict})
             
 
     def to_puz(self, filename: str) -> None:
