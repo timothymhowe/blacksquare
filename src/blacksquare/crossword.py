@@ -196,7 +196,7 @@ class Crossword:
 
             word_dict["clue"] = word.clue
             word_dict["answer"] = word.value
-            word_dict["row"], word_dict["col"] = self.get_indices(word.index)
+            word_dict["row"], word_dict["col"] = self.get_indices(word.index)[0]
 
             # store the constructed clue dict in the correct dictionary (across or down)
             if word.direction.value == "Across":
